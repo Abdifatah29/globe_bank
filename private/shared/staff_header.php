@@ -2,6 +2,8 @@
 
 !isset($page_title) ? 'Staff Menu' : '';
 
+setUrlPath('/stylesheets/staff.css');
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GBI - <?= $page_title?></title>
-    <link rel="stylesheet" media="all" href="../stylesheets/staff.css"/>
+    <link rel="stylesheet" media="all" href="<?= setUrlPath('/stylesheets/staff.css')?>"/>
 </head>
 <body>
     <header>
@@ -19,7 +21,7 @@
     </header>
     <navigation>
         <ul>
-            <li><a href="index.php">Menu</a></li>
+            <li><a href="<?= setUrlPath('/staff/index.php') ?>">Menu</a></li>
         </ul>
     </navigation>
 

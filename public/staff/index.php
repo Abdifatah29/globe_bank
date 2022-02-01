@@ -9,7 +9,7 @@ include SHARED_PATH . '/staff_header.php';
         <div id="main-menu">
             <h2>Main Menu</h2>
             <ul>
-                <li><a href="subjects/index.php">Subjects</a></li>
+                <li><a href="<?= setUrlPath("staff/subjects/index.php")?>">Subjects</a></li>
             </ul>
         </div>
     </div>

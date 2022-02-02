@@ -1,6 +1,6 @@
 <?php
 
-!isset($page_title) ? 'Staff Menu' : '';
+$page_title ?? 'Staff Menu';
 
 setUrlPath('/stylesheets/staff.css');
 
@@ -12,7 +12,7 @@ setUrlPath('/stylesheets/staff.css');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GBI - <?= $page_title?></title>
+    <title>GBI - <?= htmlChars($page_title)?></title>
     <link rel="stylesheet" media="all" href="<?= setUrlPath('/stylesheets/staff.css')?>"/>
 </head>
 <body>

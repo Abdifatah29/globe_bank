@@ -16,7 +16,7 @@ include SHARED_PATH . '/staff_header.php';
 
 <div id="content">
   <div class="subjects listing">
-    <h1>Subjects</h1>
+    <h1><?= $page_title ?></h1>
 
     <div class="actions">
       <a class="action" href="">Create New Subject</a>
@@ -38,11 +38,11 @@ include SHARED_PATH . '/staff_header.php';
     {
 ?>
         <tr>
-          <td><?= $subject['id']; ?></td>
-          <td><?= $subject['position']; ?></td>
-          <td><?= $subject['visible'] == 1 ? 'true' : 'false'; ?></td>
-    	    <td><?= $subject['menu_name']; ?></td>
-          <td><a class="action" href="<?= setUrlPath("/staff/subjects/show.php?id=" . $subject['id'])?>">View</a></td>
+          <td><?= htmlChars($subject['id']); ?></td>
+          <td><?= htmlChars($subject['position']); ?></td>
+          <td><?= $subject['visible'] ? 'true' : 'false'; ?></td>
+    	    <td><?= htmlChars($subject['menu_name']); ?></td>
+          <td><a class="action" href="<?= setUrlPath("/staff/subjects/show.php?id=" . htmlChars(eUrl($subject['id'])))?>">View</a></td>
           <td><a class="action" href="">Edit</a></td>
           <td><a class="action" href="">Delete</a></td>
         </tr>

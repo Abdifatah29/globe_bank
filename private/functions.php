@@ -38,3 +38,14 @@ function htmlChars(string $string)
 {
     return htmlspecialchars($string);
 }
+
+
+function error_404()
+{
+   return header($_SERVER['SERVER_PROTOCOL'] . '404 not found');
+}
+
+function error_500()
+{
+   return header($_SERVER['SERVER_PROTOCOL'] . '500 server error');
+}

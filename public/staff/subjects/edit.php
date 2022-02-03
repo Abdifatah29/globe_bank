@@ -2,16 +2,19 @@
 
 require_once '../../../private/Initialised.php';
 
-$test = $_GET['test'] ?? '';
-
-if ($test == '404') {
-    error_404();
-} elseif($test == '500') {
-    error_500();
-} elseif($test == 'redirect')
-{
+if (!isset($_GET['id'])) {
     header('Location: ' . setUrlPath('/staff/subjects/index.php'));
-    exit();
+}
+
+$id = $_GET['id'];
+$name = '';
+$position = '';
+$visible = '';
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['menu_name'] ?? '';
+    $position = $_POST['position'] ?? '';
+    $visible = $_POST['visible'] ?? '';
 }
 
 $page_title = 'Edit Subject';
@@ -26,7 +29,7 @@ include SHARED_PATH . '/staff_header.php';
     <form action="" method="post">
       <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="" /></dd>
+        <dd><input type="text" name="menu_name" value="<?= $name ?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
@@ -44,7 +47,7 @@ include SHARED_PATH . '/staff_header.php';
         </dd>
       </dl>
       <div id="operations">
-        <input type="submit" value="Edit Subject" />
+        <input type="submit" name="submit" value="Edit Subject" />
       </div>
     </form>
   </div>

@@ -1,6 +1,14 @@
 <!-- This file will take care of loading all files -->
 
 <?php
+
+/*
+    buffering page content
+    taking those and flsuhing into the web server
+    web server then returns them to the browser
+*/
+ob_start(); //Output buffering is turned on.
+
 define('PRIVATE_PATH', dirname(__FILE__));
 define('PROJECT_PATH', dirname(__DIR__));
 define('PUBLIC_PATH', PROJECT_PATH . '/public');

@@ -35,7 +35,7 @@ $pages = [
 <div id="content">
     <div class="pages listing">
         <h1><?= $page_title?></h1>
-        <div class="actions"><a class="action" href="">Create New Page</a></div>
+        <div class="actions"><a class="action" href="<?= setUrlPath('/staff/pages/new.php')?>">Create New Page</a></div>
         <table class="list">
             <thead>
                 <tr>
@@ -58,7 +58,7 @@ $pages = [
         <td><?= $page['visible'] ? 'true' : 'false' ?></td>
         <td><?= htmlChars($page['name'])?></td>
         <td><a class="action" href="<?= setUrlPath('/staff/pages/show.php?id=' . htmlChars(eUrl($page['id']))) ?>">View</a></td>
-        <td><a class="action" href="">Edit</a></td>
+        <td><a class="action" href="<?= setUrlPath('/staff/pages/edit.php?id=' . htmlChars(eUrl($page['id']))) ?>">Edit</a></td>
         <td><a class="action" href="">Delete</a></td>
     </tr>
 <?php

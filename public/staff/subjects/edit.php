@@ -29,13 +29,13 @@ include SHARED_PATH . '/staff_header.php';
     <form action="" method="post">
       <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="<?= $name ?>" /></dd>
+        <dd><input type="text" name="menu_name" required value="<?= htmlChars($name) ?>" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1">1</option>
+            <option value="1" <?= $position == '1' ? 'selected' : ''; ?>>1</option>
           </select>
         </dd>
       </dl>
@@ -43,7 +43,7 @@ include SHARED_PATH . '/staff_header.php';
         <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1" />
+          <input type="checkbox" name="visible" value="1" <?= $visible == '1' ? 'checked' : ''; ?>/>
         </dd>
       </dl>
       <div id="operations">

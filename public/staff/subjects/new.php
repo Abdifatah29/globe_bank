@@ -2,16 +2,15 @@
 
 require_once '../../../private/Initialised.php';
 
-$test = $_GET['test'] ?? '';
+$id = $_GET['id'];
+$name = '';
+$position = '';
+$visible = '';
 
-if ($test == '404') {
-    error_404();
-} elseif($test == '500') {
-    error_500();
-} elseif($test == 'redirect')
-{
-    header('Location: ' . setUrlPath('/staff/subjects/index.php'));
-    exit();
+if (isset($_POST['submit'])) {
+    $name = $_POST['menu_name'] ?? '';
+    $position = $_POST['position'] ?? '';
+    $visible = $_POST['visible'] ?? '';
 }
 
 $page_title = 'Create Subject';
@@ -26,13 +25,13 @@ include SHARED_PATH . '/staff_header.php';
     <form action="" method="post">
       <dl>
         <dt>Menu Name</dt>
-        <dd><input type="text" name="menu_name" value="" /></dd>
+        <dd><input type="text" name="menu_name"required value="" /></dd>
       </dl>
       <dl>
         <dt>Position</dt>
         <dd>
           <select name="position">
-            <option value="1">1</option>
+            <option value="1" <?= $position == '1' ? 'selected' : ''; ?>>1</option>
           </select>
         </dd>
       </dl>
@@ -40,11 +39,11 @@ include SHARED_PATH . '/staff_header.php';
         <dt>Visible</dt>
         <dd>
           <input type="hidden" name="visible" value="0" />
-          <input type="checkbox" name="visible" value="1" />
+          <input type="checkbox" name="visible" value="1" <?= $visible == '1' ? 'checked' : ''; ?>/>
         </dd>
       </dl>
       <div id="operations">
-        <input type="submit" value="Create Subject" />
+        <input type="submit" name="submit" value="Create Subject" />
       </div>
     </form>
   </div>

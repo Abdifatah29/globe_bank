@@ -19,3 +19,7 @@ $doc_root = substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], '
 define('WWW_ROOT', $doc_root);
 
 require_once('functions.php');
+require_once('database.php');
+
+
+$db = db_connect();

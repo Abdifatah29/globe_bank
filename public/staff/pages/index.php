@@ -4,32 +4,8 @@ require_once '../../../private/Initialised.php';
 $page_title = 'Pages';
 include SHARED_PATH . '/staff_header.php';
 
-$pages = [
-    [
-        'id' => 1,
-        'position' => 1,
-        'visible' => true,
-        'name' => 'About',
-    ],
-    [
-        'id' => 2,
-        'position' => 2,
-        'visible' => true,
-        'name' => 'Contact',
-    ],
-    [
-        'id' => 3,
-        'position' => 3,
-        'visible' => false,
-        'name' => 'Experience',
-    ],
-    [
-        'id' => 4,
-        'position' => 4,
-        'visible' => true,
-        'name' => 'Skills',
-    ]
-]
+$pages = find_pages();
+
 ?>
 
 <div id="content">
@@ -40,9 +16,11 @@ $pages = [
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Subject ID</th>
                     <th>Position</th>
                     <th>Visible</th>
                     <th>Name</th>
+                    <th>Content</th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
@@ -50,13 +28,15 @@ $pages = [
             </thead>
             <tbody>
 <?php
-    foreach ($pages as $page) {
+    while ($page = mysqli_fetch_assoc($pages)) {
 ?>
     <tr>
         <td><?= htmlChars($page['id'])?></td>
+        <td><?= htmlChars($page['subject_id'])?></td>
         <td><?= htmlChars($page['position'])?></td>
         <td><?= $page['visible'] ? 'true' : 'false' ?></td>
-        <td><?= htmlChars($page['name'])?></td>
+        <td><?= htmlChars($page['menu_name'])?></td>
+        <td><?= htmlChars($page['content'])?></td>
         <td><a class="action" href="<?= setUrlPath('/staff/pages/show.php?id=' . htmlChars(eUrl($page['id']))) ?>">View</a></td>
         <td><a class="action" href="<?= setUrlPath('/staff/pages/edit.php?id=' . htmlChars(eUrl($page['id']))) ?>">Edit</a></td>
         <td><a class="action" href="">Delete</a></td>
@@ -67,6 +47,9 @@ $pages = [
             </tbody>
         </table>
     </div>
+<?php
+    mysqli_free_result($pages);
+?>
 </div>
 </body>
 </html>

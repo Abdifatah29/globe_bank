@@ -5,12 +5,32 @@ require_once('../../../private/Initialised.php');
 $page_title = 'Subjects';
 include SHARED_PATH . '/staff_header.php';
 
-  $subjects = [
-    ['id' => '1', 'position' => '1', 'visible' => '1', 'menu_name' => 'About Globe Bank'],
-    ['id' => '2', 'position' => '2', 'visible' => '1', 'menu_name' => 'Consumer'],
-    ['id' => '3', 'position' => '3', 'visible' => '1', 'menu_name' => 'Small Business'],
-    ['id' => '4', 'position' => '4', 'visible' => '1', 'menu_name' => 'Commercial'],
-  ];
+
+/*
+  mysqli_fetch_row
+    - Results are in standard array
+    - ['1', 'About', ....]
+    - Keys are integers
+    - echo $subject[1]
+
+
+  mysqli_fetch_assoc
+    - Results are in an assoc array
+    - [
+        'id' => '1',
+        'name' => ...
+        .....
+      ]
+    - keys are column names
+    - echo 
+
+
+  - mysqli_fetch_array
+  - Results are in either or both types of array
+  - MYSQL_NUM, MYSQL_ASSOC MYSQL_BOTH
+*/
+
+$sets = find_subbjects();
 
 ?>
 
@@ -34,7 +54,7 @@ include SHARED_PATH . '/staff_header.php';
   	  </tr>
 
 <?php
-    foreach($subjects as $subject)
+    while($subject = mysqli_fetch_assoc($sets))
     {
 ?>
         <tr>
@@ -51,6 +71,9 @@ include SHARED_PATH . '/staff_header.php';
 ?>
   	</table>
   </div>
+  <?php
+    mysqli_free_result($sets);
+  ?>
 </div>
 </body>
 </html>

@@ -3,14 +3,14 @@
 require_once '../../../private/Initialised.php';
 
 $id = $_GET['id'];
-$name = '';
-$position = '';
-$visible = '';
+$name = $_POST['menu_name'] ?? '';
+$position = $_POST['position'] ?? '';
+$visible = $_POST['visible'] ?? '';
 
 if (isset($_POST['submit'])) {
-    $name = $_POST['menu_name'] ?? '';
-    $position = $_POST['position'] ?? '';
-    $visible = $_POST['visible'] ?? '';
+  $result = insert_subjects($name,$position,$visible);
+  $new_id = mysqli_insert_id($db);
+  header('Location: ' . setUrlPath("/staff/subjects/show.php?id=" . $new_id));
 }
 
 $page_title = 'Create Subject';

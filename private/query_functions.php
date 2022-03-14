@@ -47,3 +47,22 @@ function find_subject_by_id(int $id) : array
 
     return $subject;
 }
+
+function insert_subjects(...$param)
+{
+    global $db;
+
+    $sql = "INSERT INTO subjects";
+    $sql.= "(menu_name, position, visible)";
+    $sql.= "VALUES (";
+    $sql.= "'" . $param[0]  ."',";
+    $sql.= "'" . $param[1] . "',";
+    $sql.= "'" . $param[2] .  "')";
+  
+    $result = mysqli_query($db, $sql);
+    if ($result) {
+      return true;
+    } else{
+      echo mysqli_error($db);
+    }
+}

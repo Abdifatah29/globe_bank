@@ -1,6 +1,6 @@
-<!-- This file will take care of loading all files -->
-
 <?php
+
+// This file will take care of loading all files
 
 /*
     buffering page content

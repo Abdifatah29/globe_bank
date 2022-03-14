@@ -29,3 +29,21 @@ function find_pages()
 
     return $query;
 }
+
+
+function find_subject_by_id(int $id) : array
+{
+    global $db;
+
+    $sql = "SELECT * FROM subjects WHERE id = '" . $id . "'";
+    $result = mysqli_query($db, $sql);
+
+    $subject = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+
+    if (!$result) {
+        die('Database query failed');
+    }
+
+    return $subject;
+}
